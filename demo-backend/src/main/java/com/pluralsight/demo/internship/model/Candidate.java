@@ -1,6 +1,9 @@
 package com.pluralsight.demo.internship.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "candidates")
@@ -16,6 +19,9 @@ public class Candidate {
     
     private String fieldOfStudy;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime registeredAt;
+
     // Constructors
     public Candidate() {
     }
@@ -27,6 +33,13 @@ public class Candidate {
     }
 
     // Getters and Setters
+    public LocalDateTime getRegisteredAt() {
+        return registeredAt;
+    }
+    public void setRegisteredAt(LocalDateTime registeredAt) {
+        this.registeredAt = registeredAt;
+    }
+
     public Long getId() {
         return id;
     }
