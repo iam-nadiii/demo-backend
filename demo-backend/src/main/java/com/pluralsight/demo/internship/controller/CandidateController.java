@@ -36,10 +36,14 @@ public class CandidateController {
         return ResponseEntity.ok(candidates);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/search/name/{name}")
     public ResponseEntity<List<Candidate>> getCandidateByName(@PathVariable String name) {
 
         List<Candidate> candidates = candidateService.getCandidateByName(name);
+
+        if (candidates.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok(candidates);
     }
